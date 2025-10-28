@@ -1,0 +1,13 @@
+{
+  "errors": {
+    "http": {
+      "badRequest": "Felaktig förfrågan",
+      "unauthorized": "Obehörig åtkomst",
+      "forbidden": "Åtkomst nekad",
+      "notFound": "Resursen hittades inte",
+      "validationError": "Valideringsfel",
+      "serverError": "Serverfel",
+      "requestFailed": "Förfrågan misslyckades med status"
+    }
+  }
+}

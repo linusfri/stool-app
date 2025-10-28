@@ -1,0 +1,47 @@
+import '@/global.css';
+
+import { NAV_THEME } from '@/lib/theme';
+import { ThemeProvider } from '@react-navigation/native';
+import { Platform, AppStateStatus } from 'react-native';
+import { PortalHost } from '@rn-primitives/portal';
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { useColorScheme } from 'nativewind';
+import { focusManager, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useOnlineManager } from 'lib/hooks/use-online-manager';
+import { useAppState } from 'lib/hooks/use-app-state';
+import React from 'react';
+
+function onAppStateChange(status: AppStateStatus) {
+  // React Query already supports in web browser refetch on window focus by default
+  if (Platform.OS !== 'web') {
+    focusManager.setFocused(status === 'active');
+  }
+}
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 3,
+      retryDelay: 1000,
+    },
+  },
+});
+
+export { ErrorBoundary } from 'expo-router';
+
+export default function RootLayout() {
+  const { colorScheme } = useColorScheme();
+  useOnlineManager();
+  useAppState(onAppStateChange);
+
+  return (
+    <ThemeProvider value={NAV_THEME[colorScheme ?? 'light']}>
+      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+      <QueryClientProvider client={queryClient}>
+        <Stack />
+      </QueryClientProvider>
+      <PortalHost />
+    </ThemeProvider>
+  );
+}
