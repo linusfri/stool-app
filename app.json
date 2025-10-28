@@ -27,7 +27,8 @@
       },
       "permissions": [
         "android.permission.RECORD_AUDIO"
-      ]
+      ],
+      "package": "com.masterlingo.stoolapp"
     },
     "web": {
       "bundler": "metro",
