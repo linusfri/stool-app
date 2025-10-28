@@ -1,4 +1,10 @@
 {
+  "navigation": {
+    "tabs": {
+      "home": "Hem",
+      "items": "Dina objekt"
+    }
+  },
   "errors": {
     "http": {
       "badRequest": "Felaktig förfrågan",
