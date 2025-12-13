@@ -21,7 +21,7 @@ export function useAuth() {
   const loginMutation = useMutation({
     mutationKey: ['login'],
     mutationFn: async ({ email, password, rememberMe }: LoginParams) =>
-      await loginUser(email, password, rememberMe),
+      await loginUser(email, password, 'mobile', rememberMe),
     onSuccess: (data, variables) => {
       signIn(data.token, variables.rememberMe);
     },

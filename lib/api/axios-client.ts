@@ -50,7 +50,7 @@ axiosClient.interceptors.request.use((config) => {
   const { token } = useBoundStore.getState();
 
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token.access_token}`;
   }
 
   return config;

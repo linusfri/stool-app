@@ -11,7 +11,10 @@ export default function App() {
         <Stack.Protected guard={isAuthenticated}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack.Protected>
-        <Stack.Screen name="login" options={{ headerShown: false }} />
+
+        <Stack.Protected guard={!isAuthenticated}>
+          <Stack.Screen name="login" options={{ headerShown: false }} />
+        </Stack.Protected>
       </Stack>
     </SafeAreaView>
   );

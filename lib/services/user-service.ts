@@ -1,18 +1,18 @@
 import axiosClient from '../api/axios-client';
-import { User } from 'lib/types/user';
+import { User, AuthResponse } from 'lib/types/user';
 
 export async function getUser() {
   return (await axiosClient.get<User>('/auth/user')).data;
 }
 
 export async function loginUser(
-  email: string,
+  username: string,
   password: string,
   device_name: string,
   rememberMe: boolean = false
 ) {
-  const response = await axiosClient.post('/auth/login', {
-    email,
+  const response = await axiosClient.post<AuthResponse>('/auth/login', {
+    username,
     password,
     device_name,
   });

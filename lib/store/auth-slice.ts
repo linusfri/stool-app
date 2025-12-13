@@ -1,16 +1,18 @@
 import { StateCreator } from 'zustand';
+import { Token, User } from 'lib/types/user';
 
 export type AuthState = {
-  token: string | null;
+  token: Token | null;
   rememberMe: boolean;
   status: 'signIn' | 'signOut' | 'loading';
-  signIn: (token: string, rememberMe: boolean) => void;
+  signIn: (token: Token, rememberMe: boolean) => void;
   signOut: () => void;
 }
 
 // eslint-disable-next-line
 const createAuthSlice: StateCreator<AuthState> = (set, get) => ({
   token: null,
+  user: null,
   rememberMe: false,
   status: 'signOut',
   signIn: (token, rememberMe = false) => {
