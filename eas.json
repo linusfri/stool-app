@@ -1,21 +1,58 @@
 {
   "cli": {
-    "version": ">= 14.7.1",
     "appVersionSource": "remote"
   },
   "build": {
+    "base": {
+      "node": "22.14.0",
+      "yarn": "1.22.5",
+      "android": {
+        "image":"ubuntu-22.04-jdk-17-ndk-r26b"
+      },
+      "ios": {
+        "image": "latest"
+      },
+      "channel": "base"
+    },
     "development": {
+      "extends": "base",
       "developmentClient": true,
-      "distribution": "internal"
+      "env": {
+        "ENVIRONMENT": "development"
+      },
+      "android": {
+        "distribution": "internal",
+        "withoutCredentials": true
+      },
+      "ios": {
+        "developmentClient": true,
+        "distribution": "internal"
+      },
+      "channel": "development"
     },
     "preview": {
-      "distribution": "internal"
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "preview"
+      },
+      "distribution": "internal",
+      "channel": "preview"
+    },
+    "staging": {
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "preview"
+      },
+      "channel": "internal",
+      "autoIncrement": true
     },
     "production": {
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "production"
+      },
+      "channel": "production",
       "autoIncrement": true
     }
-  },
-  "submit": {
-    "production": {}
   }
 }

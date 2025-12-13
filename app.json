@@ -26,6 +26,7 @@
         "backgroundColor": "#ffffff"
       },
       "permissions": [
+        "android.permission.RECORD_AUDIO",
         "android.permission.RECORD_AUDIO"
       ],
       "package": "com.masterlingo.stoolapp"
@@ -52,6 +53,12 @@
       "eas": {
         "projectId": "31964f7d-1431-4918-ba08-25b262d4a91b"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/31964f7d-1431-4918-ba08-25b262d4a91b"
     }
   }
 }
