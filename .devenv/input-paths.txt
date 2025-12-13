@@ -1,7 +1,0 @@
-/home/linus/Projects/js/stool-app/.devenv/flake.json
-/home/linus/Projects/js/stool-app/.devenv.flake.nix
-/home/linus/Projects/js/stool-app/.env
-/home/linus/Projects/js/stool-app/devenv.local.nix
-/home/linus/Projects/js/stool-app/devenv.lock
-/home/linus/Projects/js/stool-app/devenv.nix
-/home/linus/Projects/js/stool-app/devenv.yaml
