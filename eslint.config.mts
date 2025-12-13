@@ -6,7 +6,7 @@ import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
   {
-    ignores: ['babel.config.js', 'metro.config.js', 'tailwind.config.js'],
+    ignores: ['babel.config.js', 'metro.config.js', 'tailwind.config.js', '*.json', 'lib/store/*'],
   },
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
@@ -19,6 +19,9 @@ export default defineConfig([
   {
     rules: {
       '@typescript-eslint/no-require-imports': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'func-style': ['error', 'declaration'],
+      
     },
   },
 ]);

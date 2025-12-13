@@ -1,4 +1,4 @@
-import { ImageListing } from "@/components/ui/list/item-listing";
+import { ImageListing } from "@/components/list/item-listing";
 import React from "react";
 
 export default function Screen({ images }: { images: { id: string; uri: string }[] }) {

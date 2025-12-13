@@ -41,7 +41,8 @@ expo-env.d.ts
 # @end expo-cli
 
 # nix
-devenv.local.nix
+devenv.local.*
+!devenv.local.example.nix
 .devenv*
 .pre-commit-config.yaml
 .devenv/

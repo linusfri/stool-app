@@ -25,7 +25,9 @@ function ThemeToggle() {
   );
 }
 
-const HeaderRight = () => <ThemeToggle />;
+function HeaderRight() {
+  return <ThemeToggle />;
+}
 
 export default function TabLayout() {
   return (

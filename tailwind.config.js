@@ -1,4 +1,6 @@
+import { platformSelect } from 'nativewind/theme';
 const { hairlineWidth } = require('nativewind/theme');
+
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,6 +9,26 @@ module.exports = {
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
+      fontFamily: {
+        light: ['OpenSans_300Light'],
+        regular: ['OpenSans_400Regular'],
+        medium: ['OpenSans_500Medium'],
+        semibold: ['OpenSans_600SemiBold'],
+        bold: ['OpenSans_700Bold'],
+        extrabold: ['OpenSans_800ExtraBold'],
+        'light-italic': ['OpenSans_300Light_Italic'],
+        'regular-italic': ['OpenSans_400Regular_Italic'],
+        'medium-italic': ['OpenSans_500Medium_Italic'],
+        'semibold-italic': ['OpenSans_600SemiBold_Italic'],
+        'bold-italic': ['OpenSans_700Bold_Italic'],
+        'extrabold-italic': ['OpenSans_800ExtraBold_Italic'],
+
+        system: platformSelect({
+          ios: 'OpenSans_400Regular',
+          android: 'OpenSans_400Regular',
+          default: 'OpenSans_400Regular',
+        }),
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

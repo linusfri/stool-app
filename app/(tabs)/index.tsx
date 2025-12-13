@@ -8,7 +8,7 @@ import { useBoundStore } from '@/lib/store/store';
 export default function Home() {
   const { addItem } = useBoundStore();
 
-  const pickImage = async () => {
+  async function pickImage() {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images', 'videos'],
       allowsEditing: true,

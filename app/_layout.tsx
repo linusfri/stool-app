@@ -4,13 +4,14 @@ import { NAV_THEME } from '@/lib/theme';
 import { ThemeProvider } from '@react-navigation/native';
 import { Platform, AppStateStatus } from 'react-native';
 import { PortalHost } from '@rn-primitives/portal';
-import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from 'nativewind';
 import { focusManager, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useOnlineManager } from 'lib/hooks/use-online-manager';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { useAppState } from 'lib/hooks/use-app-state';
 import React from 'react';
+import App from 'app/app';
 
 function onAppStateChange(status: AppStateStatus) {
   // React Query already supports in web browser refetch on window focus by default
@@ -39,9 +40,9 @@ export default function RootLayout() {
     <ThemeProvider value={NAV_THEME[colorScheme ?? 'light']}>
       <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
       <QueryClientProvider client={queryClient}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <KeyboardProvider>
+          <App />
+        </KeyboardProvider>
       </QueryClientProvider>
       <PortalHost />
     </ThemeProvider>
