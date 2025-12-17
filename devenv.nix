@@ -42,9 +42,21 @@
         exit 1
       fi
 
-      cat <<EOF > .env
-      ANDROID_HOME=$ANDROID_HOME/$SDK_PATH
-      EXPO_PUBLIC_LOCAL_API_URL=$NETWORK_HOST
+      cat <<EOF > devenv.local.nix
+      {
+      ...
+      }:
+      {
+        config = {
+          env = {
+            /**
+              Request over http (no ssl), certificate not valid for LAN adresses.
+            */
+            ANDROID_HOME = "$ANDROID_HOME/$SDK_PATH";
+            EXPO_PUBLIC_LOCAL_API_URL = "$NETWORK_HOST";
+          };
+        };
+      }
       EOF
     '';
 
