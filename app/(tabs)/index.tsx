@@ -4,9 +4,11 @@ import * as React from 'react';
 import { View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useBoundStore } from '@/lib/store/store';
+import useRefreshToken from '../../lib/hooks/auth/use-refresh-token';
 
 export default function Home() {
   const { addItem } = useBoundStore();
+  useRefreshToken();
 
   async function pickImage() {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -20,7 +22,7 @@ export default function Home() {
     if (!result.canceled) {
       addItem(result.assets[0].uri);
     }
-  };
+  }
 
   return (
     <View className="flex-1 items-center justify-center gap-8 p-4">

@@ -23,7 +23,7 @@ export default function Login() {
     defaultValues: {
       email: '',
       password: '',
-      rememberMe: false,
+      rememberMe: true,
     },
   });
 

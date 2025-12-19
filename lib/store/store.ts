@@ -19,7 +19,6 @@ export const useBoundStore = create<StoreState>()(
         if (state.rememberMe) {
           return {
             token: state.token,
-            user: state.user,
             status: state.status,
             rememberMe: state.rememberMe,
           };

@@ -24,6 +24,16 @@ export async function loginUser(
   };
 }
 
+export async function refreshToken(refreshToken: string) {
+  const response = await axiosClient.post<AuthResponse['token']>('/auth/refresh-token', {
+    refresh_token: refreshToken,
+  });
+
+  return {
+    token: response.data,
+  };
+}
+
 export async function logoutUser() {
   return (await axiosClient.post('/auth/logout')).data;
 }
