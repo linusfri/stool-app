@@ -2,8 +2,32 @@
   "navigation": {
     "tabs": {
       "home": "Hem",
-      "items": "Dina objekt"
+      "items": "Mina produkter"
     }
+  },
+  "createItem": {
+    "title": "Lägg till produkt",
+    "add": "Lägg till",
+    "description": "Lägg till information om den produkt du vill skapa.",
+    "fields": {
+      "name": "Produktnamn",
+      "description": "Beskrivning",
+      "status": "Status",
+      "statusPlaceholder": "Välj status",
+      "price": "Pris"
+    },
+    "status": {
+      "available": "Tillgänglig",
+      "sold": "Såld"
+    },
+    "validation": {
+      "nameRequired": "Produktnamn är obligatoriskt",
+      "nameMaxLength": "Produktnamn måste vara mindre än 255 tecken",
+      "statusRequired": "Status är obligatoriskt",
+      "priceRequired": "Pris är obligatoriskt",
+      "priceInvalid": "Ange ett giltigt pris (t.ex. 10.99)"
+    },
+    "submit": "Skapa produkt"
   },
   "errors": {
     "http": {

@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getUser, loginUser, logoutUser, refreshToken } from 'lib/services/user-service';
+import { getUser, loginUser, logoutUser } from 'lib/services/user-service';
 import { useBoundStore } from 'lib/store/store';
 
 type LoginParams = {
@@ -10,7 +10,7 @@ type LoginParams = {
 
 export function useAuth() {
   const queryClient = useQueryClient();
-  const { status, signIn, signOut, refreshClientToken } = useBoundStore();
+  const { status, signIn, signOut } = useBoundStore();
   const userQuery = useQuery({
     queryKey: ['user'],
     queryFn: getUser,
@@ -28,16 +28,6 @@ export function useAuth() {
     retry: false,
   });
 
-  const refreshTokenMutation = useMutation({
-    mutationKey: ['refreshToken'],
-    mutationFn: async ({ _refreshToken }: { _refreshToken: string }) =>
-      await refreshToken(_refreshToken),
-    onSuccess: (data) => {
-      refreshClientToken(data.token);
-    },
-    retry: false,
-  });
-
   const logoutMutation = useMutation({
     mutationFn: logoutUser,
     onSettled: () => {
@@ -48,7 +38,6 @@ export function useAuth() {
 
   return {
     user: userQuery.data,
-    refreshToken: refreshTokenMutation.mutate,
     isLoading: userQuery.isLoading || logoutMutation.isPending,
     login: loginMutation.mutateAsync,
     logout: logoutMutation.mutate,

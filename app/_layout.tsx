@@ -1,6 +1,6 @@
-import '@/global.css';
+import 'global.css';
 
-import { NAV_THEME } from '@/lib/theme';
+import { NAV_THEME } from 'lib/theme';
 import { ThemeProvider } from '@react-navigation/native';
 import { Platform, AppStateStatus } from 'react-native';
 import { PortalHost } from '@rn-primitives/portal';

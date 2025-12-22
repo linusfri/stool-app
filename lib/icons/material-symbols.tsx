@@ -12,6 +12,7 @@ import * as React from 'react';
 
 export const glyphMap = {
   add: 'add',
+  add_2: 'add_2',
   air: 'air',
   alternateEmail: 'alternate_email',
   apps: 'apps',

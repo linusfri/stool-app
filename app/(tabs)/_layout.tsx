@@ -1,10 +1,11 @@
 import { Tabs } from 'expo-router';
 import * as React from 'react';
 import { t } from 'lib/i18n';
-import { Icon } from '@/components/ui/icon';
+import { Icon } from 'components/ui/icon';
 import { HomeIcon, MoonStarIcon, SunIcon } from 'lucide-react-native';
-import { Button } from '@/components/ui/button';
+import { Button } from 'components/ui/button';
 import { useColorScheme } from 'nativewind';
+import { commonHeaderTheme } from '../../lib/constants/header/theme';
 
 const THEME_ICONS = {
   light: SunIcon,
@@ -41,15 +42,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: t('navigation.tabs.home'),
-          tabBarIcon: ({ color }) => <Icon as={HomeIcon} size={20} color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="items"
-        options={{
           title: t('navigation.tabs.items'),
           tabBarIcon: ({ color }) => <Icon as={HomeIcon} size={20} color={color} />,
+          ...commonHeaderTheme
         }}
       />
     </Tabs>
