@@ -35,7 +35,7 @@ export default function ItemsScreen() {
       name: '',
       description: '',
       status: 'available',
-      price: 0,
+      price: '',
     },
   });
 
