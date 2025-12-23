@@ -19,6 +19,7 @@ import { useProducts } from 'lib/hooks/products/use-products';
 export default function ItemsScreen() {
   const { items, addItem } = useBoundStore();
   const [modalVisible, setModalVisible] = useState(false);
+  const [chosenImage, setChosenImage] = useState<string | null>(null);
   const { createProduct } = useProducts();
 
   useRefreshToken();
@@ -46,11 +47,9 @@ export default function ItemsScreen() {
     { label: t('createItem.status.sold'), value: 'sold' },
   ];
 
-  
-
   async function pickImage() {
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images', 'videos'],
+      mediaTypes: ['images'],
       allowsEditing: true,
       base64: true,
       aspect: [1, 1],
@@ -58,8 +57,8 @@ export default function ItemsScreen() {
     });
 
     if (!result.canceled) {
+      setChosenImage(result.assets[0].uri);
       setModalVisible(true);
-      addItem(result.assets[0].uri);
     }
   }
 
@@ -69,11 +68,12 @@ export default function ItemsScreen() {
         name: data.name,
         description: data.description,
         status: data.status as 'available' | 'sold',
-        price: parseFloat(parseFloat(data.price).toFixed(1)),
+        price: parseFloat(data.price),
       },
       {
         onSuccess: () => {
           setModalVisible(false);
+          addItem(chosenImage!);
         },
         onError: (error) => {
           console.error('Error creating product:', error);
