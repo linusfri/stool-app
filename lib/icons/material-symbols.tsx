@@ -50,6 +50,7 @@ export const glyphMap = {
   person: 'person',
   phoneInTalk: 'phone_in_talk',
   signalCellularAlt: 'signal_cellular_alt',
+  searchOff: 'search_off',
   visibility: 'visibility',
   visibilityOff: 'visibility_off',
   waterDrop: 'water_drop',

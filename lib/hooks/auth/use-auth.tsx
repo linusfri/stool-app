@@ -25,7 +25,7 @@ export function useAuth() {
     onSuccess: (data, variables) => {
       signIn(data.token, variables.rememberMe);
     },
-    retry: false,
+    retry: true,
   });
 
   const logoutMutation = useMutation({
@@ -38,6 +38,7 @@ export function useAuth() {
 
   return {
     user: userQuery.data,
+    isAuthenticated: status === 'signIn' && !!userQuery.data,
     isLoading: userQuery.isLoading || logoutMutation.isPending,
     login: loginMutation.mutateAsync,
     logout: logoutMutation.mutate,

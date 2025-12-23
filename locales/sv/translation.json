@@ -5,7 +5,7 @@
       "items": "Mina produkter"
     }
   },
-  "createItem": {
+  "createProduct": {
     "title": "Lägg till produkt",
     "add": "Lägg till",
     "description": "Lägg till information om den produkt du vill skapa.",
@@ -29,6 +29,10 @@
     },
     "submit": "Skapa produkt"
   },
+  "products": {
+    "noProducts": "Inga produkter tillgängliga.",
+    "yourProducts": "Dina produkter"
+  },
   "errors": {
     "http": {
       "badRequest": "Felaktig förfrågan",
@@ -38,6 +42,26 @@
       "validationError": "Valideringsfel",
       "serverError": "Serverfel",
       "requestFailed": "Förfrågan misslyckades med status"
+    }
+  },
+  "states": {
+    "loading": "Laddar"
+  },
+  "productDetail": {
+    "editTitle": "Redigera produkt",
+    "description": "Beskrivning",
+    "edit": "Redigera",
+    "save": "Spara",
+    "cancel": "Avbryt",
+    "delete": "Ta bort",
+    "deleteConfirmTitle": "Ta bort produkt",
+    "deleteConfirmMessage": "Är du säker på att du vill ta bort denna produkt? Detta kan inte ångras.",
+    "notFound": "Produkten hittades inte"
+  },
+  "status": {
+    "notFound": {
+      "title": "Inget hittades",
+      "description": "Inga objekt att visa"
     }
   }
 }

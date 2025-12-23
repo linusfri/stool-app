@@ -12,6 +12,8 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { useAppState } from 'lib/hooks/use-app-state';
 import React from 'react';
 import App from 'app/app';
+import SetUpFonts from 'lib/fonts/fonts';
+import { SplashScreen } from 'expo-router';
 
 function onAppStateChange(status: AppStateStatus) {
   // React Query already supports in web browser refetch on window focus by default
@@ -35,6 +37,12 @@ export default function RootLayout() {
   const { colorScheme } = useColorScheme();
   useOnlineManager();
   useAppState(onAppStateChange);
+  const fontsLoaded = SetUpFonts();
+
+  if (!fontsLoaded) {
+    SplashScreen.preventAutoHideAsync();
+    return null;
+  }
 
   return (
     <ThemeProvider value={NAV_THEME[colorScheme ?? 'light']}>

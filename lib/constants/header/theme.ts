@@ -11,6 +11,9 @@ export const commonHeaderTheme = {
     fontSize: 20,
   },
   headerTitleAlign: 'left',
+  headerTitleContainerStyle: {
+    width: '100%',
+  },
   headerStyle: {
     shadowColor: 'transparent',
     borderBottomColor: '#E3E3E3',
@@ -27,7 +30,7 @@ export const commonSubPageHeaderTheme = {
   },
   headerStyle: {
     ...commonHeaderTheme.headerStyle,
-    backgroundColor: '#F3F4F6', // gray-100, cannot use nativewind color here
+    backgroundColor: 'hsl(0 0% 100%)',
     borderBottomWidth: 0,
     height: Platform.OS === 'ios' ? 115 : 105,
   },

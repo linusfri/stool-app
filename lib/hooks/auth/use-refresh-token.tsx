@@ -1,11 +1,10 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { refreshToken } from 'lib/services/user-service';
 import { useBoundStore } from 'lib/store/store';
 import { useEffect } from 'react';
 import useAuth from 'lib/hooks/auth/use-auth';
 
 export default function useRefreshToken() {
-  const queryClient = useQueryClient();
   const { refreshClientToken, token } = useBoundStore();
   const { user } = useAuth();
 
@@ -15,7 +14,6 @@ export default function useRefreshToken() {
       await refreshToken(_refreshToken),
     onSuccess: (data) => {
       refreshClientToken(data.token);
-      queryClient.invalidateQueries({ queryKey: ['user', 'refreshToken'] });
     },
     retry: false,
   });
