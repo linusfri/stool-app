@@ -14,7 +14,7 @@ export type ProductFormData = {
   description: string;
   status: string;
   price: string;
-  productImage: string;
+  productImages: string[];
 };
 
 export default function ProductCreateModal({
@@ -22,7 +22,7 @@ export default function ProductCreateModal({
   submitFn,
 }: {
   modalVisible: boolean;
-  productImage: string;
+  productImages: string[];
   submitFn: (data: ProductFormData) => Promise<void>;
 }) {
   const { ...formMethods } = useForm<ProductFormData>({

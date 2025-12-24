@@ -14,7 +14,7 @@ import { ProductFormData } from 'components/modal/product-create-modal';
 
 export default function ItemsScreen() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [chosenImage, setChosenImage] = useState<string>('');
+  const [chosenImages, setChosenImages] = useState<string[]>([]);
   const { createProduct, products, isLoading } = useProducts();
 
   useRefreshToken();
@@ -26,15 +26,16 @@ export default function ItemsScreen() {
       base64: true,
       aspect: [1, 1],
       quality: 1,
+      // allowsMultipleSelection: true, MUST COMPRESS IMAGES BEFORE USING THIS
     });
 
     if (!result.canceled) {
-      setChosenImage(result.assets[0].base64 ?? '');
+      const selectedImagesBase64 = result.assets.map((asset) => asset.base64 ?? '');
+      setChosenImages(selectedImagesBase64);
       setModalVisible(true);
     }
   }
   
-
   async function onSubmit(data: ProductFormData) {
     createProduct(
       {
@@ -42,7 +43,7 @@ export default function ItemsScreen() {
         description: data.description,
         status: data.status as 'available' | 'sold',
         price: parseFloat(data.price),
-        images: [chosenImage],
+        images: chosenImages,
       },
       {
         onError: (error) => {
@@ -75,7 +76,7 @@ export default function ItemsScreen() {
 
       <ProductCreateModal
         modalVisible={modalVisible}
-        productImage={chosenImage}
+        productImages={chosenImages}
         submitFn={onSubmit}
       />
     </View>

@@ -42,7 +42,7 @@ export async function handleError(error: AxiosError) {
 
 const axiosClient = axios.create({
   baseURL: getBaseUrl(),
-  timeout: 20000,
+  timeout: 10000,
 });
 
 axiosClient.interceptors.request.use((config) => {

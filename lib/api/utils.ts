@@ -13,7 +13,6 @@ function getBaseUrl(): string {
   if (!isHostPortEnvDefined())
     throw new Error('Could not get port of development host.');
 
-  console.log(getHostAddressAndPort());
   return getHostAddressAndPort();
 }
 
