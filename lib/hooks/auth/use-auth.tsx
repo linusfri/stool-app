@@ -25,7 +25,7 @@ export function useAuth() {
     onSuccess: (data, variables) => {
       signIn(data.token, variables.rememberMe);
     },
-    retry: true,
+    retry: false,
   });
 
   const logoutMutation = useMutation({

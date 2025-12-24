@@ -16,7 +16,7 @@ export type ProductCreateData = {
   description?: string;
   status: ProductStatus;
   price: number;
-  image: string;
+  images: string[];
 };
 
 export type ProductUpdateData = {

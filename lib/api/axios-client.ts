@@ -24,7 +24,6 @@ function getErrorMessageByStatus(status: number): string {
 
 export async function handleError(error: AxiosError) {
   let customMessage = error.message;
-
   if (error.response?.status) {
     const status = error.response.status;
 
@@ -43,7 +42,7 @@ export async function handleError(error: AxiosError) {
 
 const axiosClient = axios.create({
   baseURL: getBaseUrl(),
-  timeout: 10000,
+  timeout: 20000,
 });
 
 axiosClient.interceptors.request.use((config) => {

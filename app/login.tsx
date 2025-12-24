@@ -29,9 +29,10 @@ export default function Login() {
 
   const { handleSubmit, setError, formState } = formMethods;
   const [showPassword, setShowPassword] = useState(false);
-  const { login, isLoading } = useAuth();
+  const { login, isLoading, error, user } = useAuth();
 
-  if (isLoading) {
+  console.log(user);
+  if (isLoading && !error) {
     return <Loader text={t('auth.states.loggingIn')} />;
   }
 

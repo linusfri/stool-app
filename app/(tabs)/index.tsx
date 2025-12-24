@@ -42,7 +42,7 @@ export default function ItemsScreen() {
         description: data.description,
         status: data.status as 'available' | 'sold',
         price: parseFloat(data.price),
-        image: chosenImage,
+        images: [chosenImage],
       },
       {
         onError: (error) => {
