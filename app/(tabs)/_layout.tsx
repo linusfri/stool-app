@@ -2,10 +2,11 @@ import { Tabs } from 'expo-router';
 import * as React from 'react';
 import { t } from 'lib/i18n';
 import { Icon } from 'components/ui/icon';
-import { HomeIcon, MoonStarIcon, SunIcon } from 'lucide-react-native';
+import { MoonStarIcon, SunIcon } from 'lucide-react-native';
 import { Button } from 'components/ui/button';
 import { useColorScheme } from 'nativewind';
 import { commonHeaderTheme } from '../../lib/constants/header/theme';
+import MaterialSymbol from 'lib/icons/material-symbols';
 
 const THEME_ICONS = {
   light: SunIcon,
@@ -20,7 +21,8 @@ function ThemeToggle() {
       onPressIn={toggleColorScheme}
       size="icon"
       variant="ghost"
-      className="ios:size-9 rounded-full web:mx-4">
+      className="ios:size-9 rounded-full web:mx-4"
+    >
       <Icon as={THEME_ICONS[colorScheme ?? 'light']} className="size-5" />
     </Button>
   );
@@ -35,16 +37,26 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: true,
-        tabBarActiveTintColor: '#BD2B0B',
-        tabBarInactiveTintColor: '#3E3E3E',
-        headerRight: () => <HeaderRight />,
-      }}>
+        tabBarActiveTintColor: '#1976D2',
+        tabBarInactiveTintColor: '#3E3E3E'
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
+          headerRight: () => <HeaderRight />,
           title: t('navigation.tabs.items'),
-          tabBarIcon: ({ color }) => <Icon as={HomeIcon} size={20} color={color} />,
-          ...commonHeaderTheme
+          ...commonHeaderTheme,
+          tabBarIcon: ({ color }) => <MaterialSymbol name="home" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: t('navigation.tabs.settings'),
+          headerShown: false,
+          tabBarIcon: ({ color }) => <MaterialSymbol name="apps" size={24} color={color} />,
+          ...commonHeaderTheme,
         }}
       />
     </Tabs>

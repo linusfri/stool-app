@@ -10,7 +10,7 @@ type LoginParams = {
 
 export function useAuth() {
   const queryClient = useQueryClient();
-  const { status, signIn, signOut } = useBoundStore();
+  const { status, signIn, signOut, token } = useBoundStore();
   const userQuery = useQuery({
     queryKey: ['user'],
     queryFn: getUser,
@@ -38,7 +38,7 @@ export function useAuth() {
 
   return {
     user: userQuery.data,
-    isAuthenticated: status === 'signIn' && !!userQuery.data,
+    isAuthenticated: status === 'signIn' && !!token,
     isLoading: userQuery.isLoading || logoutMutation.isPending,
     login: loginMutation.mutateAsync,
     logout: logoutMutation.mutate,

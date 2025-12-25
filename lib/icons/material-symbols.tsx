@@ -134,7 +134,7 @@ export default function MaterialSymbol(props: MaterialSymbolProps): React.ReactE
       size={props.size}
       color={props.color}
       onPress={props.onPress}
-      className={cn('text-foreground', props.className)}
+      className={cn(!props.color && 'text-foreground', props.className)}
     />
   );
 }

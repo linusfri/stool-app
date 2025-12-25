@@ -1,8 +1,16 @@
 {
+  "auth": {
+    "actions": {
+      "login": "Logga in",
+      "logout": "Logga ut",
+      "signup": "Registrera"
+    }
+  },
   "navigation": {
     "tabs": {
       "home": "Hem",
-      "items": "Mina produkter"
+      "items": "Mina produkter",
+      "settings": "Inställningar"
     }
   },
   "createProduct": {

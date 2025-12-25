@@ -125,7 +125,7 @@ export default function Login() {
           onPress={handleSubmit(onSubmit)}
           disabled={formState.isSubmitting}
         >
-          <Text className="bg-foreground text-base font-semibold text-background">
+          <Text className="text-base font-semibold">
             {t('auth.actions.logIn')}
           </Text>
         </Button>

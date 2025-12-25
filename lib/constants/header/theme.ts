@@ -11,14 +11,11 @@ export const commonHeaderTheme = {
     fontSize: 20,
   },
   headerTitleAlign: 'left',
-  headerTitleContainerStyle: {
-    width: '100%',
-  },
   headerStyle: {
     shadowColor: 'transparent',
     borderBottomColor: '#E3E3E3',
     borderBottomWidth: 1,
-    height: Platform.OS === 'ios' ? 115 : 80,
+    height: Platform.OS === 'ios' ? 115 : 105,
   },
 } as const;
 
