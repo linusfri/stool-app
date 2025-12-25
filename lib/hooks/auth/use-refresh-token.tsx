@@ -20,11 +20,11 @@ export default function useRefreshToken() {
 
   useEffect(() => {
     if (!user || !token?.refresh_token) return;
-    const FIVE_MINUTES = 1000 * 60 * 5;
+    const ONE_HOUR = 1000 * 60 * 60;
 
     const interval = setInterval(() => {
       refreshTokenMutation.mutate({ _refreshToken: token.refresh_token });
-    }, FIVE_MINUTES);
+    }, ONE_HOUR);
     return () => clearInterval(interval);
   }, []);
 }

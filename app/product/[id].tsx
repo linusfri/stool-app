@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Alert } from 'react-native';
+import { View, ScrollView, Alert, Image } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Text } from 'components/text/text';
-import { cn } from 'lib/utils';
+import { cn, getFileUrl } from 'lib/utils';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormInput } from 'components/form/fields/input/controlled-input';
 import { FormSelect } from 'components/form/fields/select/controlled-select';
@@ -53,6 +53,7 @@ export default function ProductDetailScreen() {
         description: data.description,
         status: data.status as 'available' | 'sold',
         price: parseFloat(data.price),
+        images: [],
       });
       setIsEditMode(false);
     } catch (error) {
@@ -187,6 +188,11 @@ export default function ProductDetailScreen() {
           </FormProvider>
         ) : (
           <>
+            <Image
+              source={{ uri: product.images.length > 0 ? getFileUrl(product.images[0].url) : undefined }}
+              className={cn('aspect-square w-full rounded-md')}
+              resizeMode="cover"
+            />
             <Text className={cn('mb-2 font-bold text-2xl')}>{product.name}</Text>
             <Text className={cn('mb-4 text-xl text-muted-foreground')}>${product.price}</Text>
             <Text

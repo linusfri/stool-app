@@ -1,3 +1,5 @@
+import { ImageCreateData, ImageResponseData } from "lib/types/image";
+
 export type ProductStatus = 'available' | 'sold';
 
 export type Product = {
@@ -5,7 +7,7 @@ export type Product = {
   name: string;
   description: string | null;
   status: ProductStatus;
-  images: string[];
+  images: ImageResponseData[];
   price: number;
   created_at?: number; // Unix timestamp
   updated_at?: number; // Unix timestamp
@@ -16,7 +18,7 @@ export type ProductCreateData = {
   description?: string;
   status: ProductStatus;
   price: number;
-  images: string[];
+  images: ImageCreateData[];
 };
 
 export type ProductUpdateData = {
@@ -24,5 +26,5 @@ export type ProductUpdateData = {
   description?: string;
   status: ProductStatus;
   price: number;
-  image?: string;
+  images: ImageCreateData[];
 };

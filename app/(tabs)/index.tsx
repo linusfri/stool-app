@@ -11,10 +11,11 @@ import Loader from 'components/loader/loader';
 import { NotFound } from 'components/not-found/not-found';
 import ProductCreateModal from 'components/modal/product-create-modal';
 import { ProductFormData } from 'components/modal/product-create-modal';
+import { ImageCreateData, NewImage } from 'lib/types/image';
 
 export default function ItemsScreen() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [chosenImages, setChosenImages] = useState<string[]>([]);
+  const [chosenImages, setChosenImages] = useState<ImageCreateData[]>([]);
   const { createProduct, products, isLoading } = useProducts();
 
   useRefreshToken();
@@ -30,12 +31,19 @@ export default function ItemsScreen() {
     });
 
     if (!result.canceled) {
-      const selectedImagesBase64 = result.assets.map((asset) => asset.base64 ?? '');
-      setChosenImages(selectedImagesBase64);
+      const selectedImages = result.assets.map((asset) => ({
+        id: asset.assetId ?? 0,
+        kind: 'new',
+        data: asset.base64 ?? '',
+        filename: asset.fileName ?? 'unknown',
+        mimetype: asset.type ?? 'image/jpeg',
+      } as NewImage));
+
+      setChosenImages(selectedImages);
       setModalVisible(true);
     }
   }
-  
+
   async function onSubmit(data: ProductFormData) {
     createProduct(
       {
@@ -61,10 +69,12 @@ export default function ItemsScreen() {
 
   return (
     <View className="flex-1 justify-center p-4">
-      { products && products.length > 0 ? (
+      {products && products.length > 0 ? (
         <ProductListing items={products} className="w-full" />
-      ):  <NotFound className={cn('flex-1')} title={t('products.noProducts')} />}
-      
+      ) : (
+        <NotFound className={cn('flex-1')} title={t('products.noProducts')} />
+      )}
+
       <View className={cn('flex flex-1 items-end justify-end')}>
         <Pressable
           className={cn('h-16 w-16 items-center justify-center rounded-sm bg-primary')}

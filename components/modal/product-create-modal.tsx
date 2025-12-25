@@ -8,6 +8,7 @@ import { FormInput } from 'components/form/fields/input/controlled-input';
 import { FormSelect } from 'components/form/fields/select/controlled-select';
 import { Button } from 'components/ui/button';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
+import { ImageCreateData } from 'lib/types/image';
 
 export type ProductFormData = {
   name: string;
@@ -22,7 +23,7 @@ export default function ProductCreateModal({
   submitFn,
 }: {
   modalVisible: boolean;
-  productImages: string[];
+  productImages: ImageCreateData[];
   submitFn: (data: ProductFormData) => Promise<void>;
 }) {
   const { ...formMethods } = useForm<ProductFormData>({
