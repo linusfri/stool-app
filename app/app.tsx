@@ -1,10 +1,21 @@
 import useAuth from 'lib/hooks/auth/use-auth';
 import { Stack } from 'expo-router';
 import * as React from 'react';
+import { useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { AxiosError } from 'node_modules/axios';
 
 export default function App() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, error, logout } = useAuth();
+  const errorIsUnauthorized = (error as AxiosError)?.request?.status === 401;
+
+  /** Do this to make sure client token is deleted if unauthorized */
+  useEffect(() => {
+    if (errorIsUnauthorized) {
+      logout();
+    }
+  }, [error]);
+
   return (
     <SafeAreaView className="flex-1 bg-background">
       <Stack screenOptions={{ headerShown: false }}>
